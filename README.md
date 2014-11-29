@@ -20,6 +20,7 @@ protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
     rect = new Rect(0, 0, w, h);
 }
+```
 
 Override `onDraw()` and use your `Artiste` to draw your `Shape` with some `Paint`.
 
