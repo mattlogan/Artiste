@@ -9,26 +9,26 @@ In a View class, create an `Artiste` and `Shape` instance.
 
 ```java
 artiste = new Artiste();
-shape = new Shapes.Hexagon();
+hexagon = new Shapes.Hexagon();
 ```
 
-Define the Rect in which the shape will be drawn. It must be square.
+Set the shape's bounds -- it must be square.
 
 ```java
 @Override
 protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
-    rect = new Rect(0, 0, w, h);
+    hexagon.setBounds(new Rect(0, 0, w, h));
 }
 ```
 
-Override `onDraw()` and use your `Artiste` to draw your `Shape` with some `Paint`.
+Override `onDraw()` and use your `Artiste` to draw your `Shape` with some `Paint` on the `Canvas`.
 
 ```java
 @Override
 protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-    artiste.drawShape(shape).inRect(rect).withPaint(paint).onCanvas(canvas);
+    artiste.drawShape(shape).withPaint(paint).onCanvas(canvas);
 }
 ```
 
@@ -47,7 +47,7 @@ public static class Tridecagon extends RegularConvexPolygon {
 }
 ```
 
-If your shape is not a regular convex polygon, extend `Shape` and override `getPathInRect(Rect rect)`. This is a little trickier. Look at the implementation in `RegularConvexPolygon` for guidance.
+If your shape is not a regular convex polygon, extend `Shape` and override `setBounds()` and `getPath()`. This is a little trickier. Look at the implementation in `RegularConvexPolygon` for guidance.
 
 ## License
 
