@@ -12,7 +12,7 @@ artiste = new Artiste();
 hexagon = new Shapes.Hexagon();
 ```
 
-Set the shape's bounds -- it must be square.
+Set the shape's bounds -- they must be square.
 
 ```java
 @Override
