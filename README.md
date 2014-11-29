@@ -40,11 +40,11 @@ To create a new shape, extend `RegularConvexPolygon` if your shape is a regular 
 
 ```java
 public static class Tridecagon extends RegularConvexPolygon {
-        @Override
-        public int getNumberOfSides() {
-            return 13;
-        }
+    @Override
+    public int getNumberOfSides() {
+        return 13;
     }
+}
 ```
 
 If your shape is not a regular convex polygon, extend `Shape` and override `getPathInRect(Rect rect)`. This is a little trickier. Look at the implementation in `RegularConvexPolygon` for guidance.
