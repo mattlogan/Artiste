@@ -9,10 +9,10 @@ import static java.lang.Math.toRadians;
 
 public abstract class RegularConvexPolygon extends Shape {
 
-    Path path = new Path();
+    Path path;
 
     @Override
-    public Path getPathInRect(Rect rect) {
+    public void setBounds(Rect rect) {
         if (rect.width() != rect.height()) {
             throw new IllegalStateException("rect must be square");
         }
@@ -28,6 +28,8 @@ public abstract class RegularConvexPolygon extends Shape {
 
         float startDegrees = numPoints % 2 != 0 ? 90 : 90 + degreesBetweenPoints / 2f;
 
+        path = new Path();
+
         for (int i = 0; i <= numPoints; i++) {
             double theta = toRadians(startDegrees + i * degreesBetweenPoints);
 
@@ -40,7 +42,13 @@ public abstract class RegularConvexPolygon extends Shape {
                 path.lineTo(x, y);
             }
         }
+    }
 
+    @Override
+    public Path getPath() {
+        if (path == null) {
+            throw new IllegalStateException("setBounds() must be called before getPath()");
+        }
         return path;
     }
 

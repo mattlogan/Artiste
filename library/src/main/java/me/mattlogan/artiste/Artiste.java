@@ -7,16 +7,10 @@ import android.graphics.Rect;
 public class Artiste {
 
     Shape shape;
-    Rect rect;
     Paint paint;
 
     public Artiste drawShape(Shape shape) {
         this.shape = shape;
-        return this;
-    }
-
-    public Artiste inRect(Rect rect) {
-        this.rect = rect;
         return this;
     }
 
@@ -26,16 +20,15 @@ public class Artiste {
     }
 
     public void onCanvas(Canvas canvas) {
-        if (shape == null || rect == null || paint == null) {
+        if (shape == null || paint == null) {
             throw new IllegalStateException("shape, rect, and paint must be set before calling onCanvas()");
         }
-        canvas.drawPath(shape.getPathInRect(rect), paint);
+        canvas.drawPath(shape.getPath(), paint);
         clearAll();
     }
 
-    private void clearAll() {
+    void clearAll() {
         shape = null;
-        rect = null;
         paint = null;
     }
 }
