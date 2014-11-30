@@ -29,4 +29,16 @@ public class Shapes {
             return 6;
         }
     }
+
+    public static class FivePointedStar extends RegularStarPolygon {
+        @Override
+        public int getNumberOfPoints() {
+            return 5;
+        }
+
+        @Override
+        public int getDensity() {
+            return 2;
+        }
+    }
 }
