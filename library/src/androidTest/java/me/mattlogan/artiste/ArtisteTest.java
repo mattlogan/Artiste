@@ -42,7 +42,7 @@ public class ArtisteTest extends MockitoUnitTestCase {
 
         artiste.onCanvas(canvas);
 
-        verify(canvas, times(1)).drawPath(shape.getPath(), paint);
+        verify(shape, times(1)).draw(canvas, paint);
     }
 
     public void testClearAll() {
