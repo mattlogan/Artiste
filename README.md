@@ -36,7 +36,7 @@ protected void onDraw(Canvas canvas) {
 
 ## Extend it
 
-`Triangle`, `Square`, `Pentagon`, `Hexagon`, and `FivePointedStar` are defined in the `Shapes` class.
+`Triangle`, `Square`, `Pentagon`, `Hexagon`, `FivePointedStar`, and `Circle` are defined in the `Shapes` class.
 
 To create a new shape, extend `RegularConvexPolygon` or `RegularStarPolygon` if the shape you wish to draw is either of these kinds of shapes (search for "Regular Polygon" on Wikipedia for reference). For example:
 
@@ -63,7 +63,7 @@ public static class Octagram extends RegularStarPolygon {
 
 *Note: the "density" of a regular star polygon is the number of vertices, or points, to skip when drawing a line connecting two vertices. For example, one line of a five-pointed star starts at the first vertex, skips the second vertex (moving CW or CCW), and connects with the third vertex. Thus, a five-pointed star has a density of two.*
 
-If your shape is not a regular convex polygon or a regular star polygon, extend `Shape` and override `setBounds(Rect rect)` and `getPath()`. This is a little trickier. Look at the implementations in `RegularConvexPolygon` or `RegularStarPolygon` for guidance.
+If your shape is not a regular convex polygon or a regular star polygon, extend `Shape` and override `setBounds(Rect rect)` and `draw(Canvas canvas, Paint paint)`. This is a little trickier. Look at `RegularConvexPolygon`, `RegularStarPolygon`, or `Circle` for guidance.
 
 ## License
 
