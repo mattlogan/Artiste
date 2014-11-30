@@ -5,14 +5,14 @@ Android library for drawing shapes on a canvas
 
 ## Usage
 
-In a View class, create an `Artiste` and `Shape` instance.
+In a `View` class, create an `Artiste` and `Shape` instance.
 
 ```java
 artiste = new Artiste();
 hexagon = new Shapes.Hexagon();
 ```
 
-Set the shape's bounds -- they must be square.
+Set the `Shape`'s bounds with `setBounds(Rect rect)` -- they must be square. This triggers instantiation and calculation of that `Shape`'s `Path`. Don't call this in `onDraw(Canvas canvas)`, as it is a relatively expensive operation.
 
 ```java
 @Override
@@ -22,7 +22,7 @@ protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 }
 ```
 
-Override `onDraw()` and use your `Artiste` to draw your `Shape` with some `Paint` on the `Canvas`.
+Override `onDraw(Canvas canvas)` and tell your `Artiste` to draw your `Shape` with some `Paint` on the `Canvas`.
 
 ```java
 @Override
@@ -36,7 +36,7 @@ protected void onDraw(Canvas canvas) {
 
 `Triangle`, `Square`, `Pentagon`, `Hexagon`, and `FivePointedStar` are defined in the `Shapes` class.
 
-To create a new shape, extend `RegularConvexPolygon` or `RegularStarPolygon` if your shape is a either of these kinds of shapes. Just override `getNumberOfSides()`. For example:
+To create a new shape, extend `RegularConvexPolygon` or `RegularStarPolygon` if the shape you wish to draw is either of these kinds of shapes (search for "Regular Polygon" on Wikipedia for reference). For example:
 
 ```java
 public static class Tridecagon extends RegularConvexPolygon {
@@ -45,9 +45,23 @@ public static class Tridecagon extends RegularConvexPolygon {
         return 13;
     }
 }
+
+public static class Octagram extends RegularStarPolygon {
+    @Override
+    public int getNumberOfPoints() {
+        return 8;
+    }
+    
+    @Override
+    public int getDensity() {
+        return 3;
+    }
+}
 ```
 
-If your shape is not a regular convex polygon, extend `Shape` and override `setBounds()` and `getPath()`. This is a little trickier. Look at the implementation in `RegularConvexPolygon` or `RegularStarPolygon` for guidance.
+*Note: the "density" of a regular star polygon is the number of vertices, or points, to skip when drawing a line connecting two vertices. For example, one line of a five-pointed star starts at the first vertex, skips the second vertex (moving CW or CCW), and connects with the third vertex. Thus, a five-pointed star has a density of two.*
+
+If your shape is not a regular convex polygon or a regular star polygon, extend `Shape` and override `setBounds(Rect rect)` and `getPath()`. This is a little trickier. Look at the implementations in `RegularConvexPolygon` or `RegularStarPolygon` for guidance.
 
 ## License
 
