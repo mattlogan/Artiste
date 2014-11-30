@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.0.5 *(2014-11-30)*
+--------------------------
+
+* Updated testOnCanvas() test in ArtisteTest
+
 Version 1.0.4 *(2014-11-30)*
 --------------------------
 
