@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.0.4 *(2014-11-30)*
+--------------------------
+
+* Moved drawing responsibility into Shape with draw(Canvas canvas, Paint paint)
+* Added Circle to Shapes class
+
 Version 1.0.3 *(2014-11-30)*
 --------------------------
 
