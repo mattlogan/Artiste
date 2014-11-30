@@ -20,9 +20,9 @@ public class Artiste {
 
     public void onCanvas(Canvas canvas) {
         if (shape == null || paint == null) {
-            throw new IllegalStateException("shape, rect, and paint must be set before calling onCanvas()");
+            throw new IllegalStateException("shape and paint must be set before calling onCanvas()");
         }
-        canvas.drawPath(shape.getPath(), paint);
+        shape.draw(canvas, paint);
         clearAll();
     }
 

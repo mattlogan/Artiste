@@ -1,5 +1,7 @@
 package me.mattlogan.artiste;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 
@@ -45,11 +47,11 @@ public abstract class RegularConvexPolygon extends Shape {
     }
 
     @Override
-    public Path getPath() {
+    public void draw(Canvas canvas, Paint paint) {
         if (path == null) {
             throw new IllegalStateException("setBounds() must be called before getPath()");
         }
-        return path;
+        canvas.drawPath(path, paint);
     }
 
     public abstract int getNumberOfSides();
