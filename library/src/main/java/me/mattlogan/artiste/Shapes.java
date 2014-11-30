@@ -1,5 +1,10 @@
 package me.mattlogan.artiste;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+
 public class Shapes {
 
     public static class Triangle extends RegularConvexPolygon {
@@ -39,6 +44,21 @@ public class Shapes {
         @Override
         public int getDensity() {
             return 2;
+        }
+    }
+
+    public static class Circle extends Shape {
+
+        RectF rectF;
+
+        @Override
+        public void setBounds(Rect rect) {
+            rectF = new RectF(rect);
+        }
+
+        @Override
+        public void draw(Canvas canvas, Paint paint) {
+            canvas.drawArc(rectF, 0, 360, false, paint);
         }
     }
 }
