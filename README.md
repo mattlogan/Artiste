@@ -34,9 +34,9 @@ protected void onDraw(Canvas canvas) {
 
 ## Extend it
 
-`Triangle`, `Square`, `Pentagon`, and `Hexagon` are currently defined in the `Shapes` class.
+`Triangle`, `Square`, `Pentagon`, `Hexagon`, and `FivePointedStar` are defined in the `Shapes` class.
 
-To create a new shape, extend `RegularConvexPolygon` if your shape is a regular convex polygon. Just override `getNumberOfSides()`. For example:
+To create a new shape, extend `RegularConvexPolygon` or `RegularStarPolygon` if your shape is a either of these kinds of shapes. Just override `getNumberOfSides()`. For example:
 
 ```java
 public static class Tridecagon extends RegularConvexPolygon {
@@ -47,7 +47,7 @@ public static class Tridecagon extends RegularConvexPolygon {
 }
 ```
 
-If your shape is not a regular convex polygon, extend `Shape` and override `setBounds()` and `getPath()`. This is a little trickier. Look at the implementation in `RegularConvexPolygon` for guidance.
+If your shape is not a regular convex polygon, extend `Shape` and override `setBounds()` and `getPath()`. This is a little trickier. Look at the implementation in `RegularConvexPolygon` or `RegularStarPolygon` for guidance.
 
 ## License
 
