@@ -51,7 +51,7 @@ public abstract class RegularStarPolygon extends Shape {
     @Override
     public void draw(Canvas canvas, Paint paint) {
         if (path == null) {
-            throw new IllegalStateException("setBounds() must be called before getPath()");
+            throw new IllegalStateException("setBounds() must be called before draw()");
         }
         canvas.drawPath(path, paint);
     }
