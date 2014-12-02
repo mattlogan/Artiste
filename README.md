@@ -23,7 +23,7 @@ fivePointedStar.setRotation(10);
 fivePointedStar.setOutlined(true);
 ```
 
-The `Shape` methods `setRotation(int rotationDegrees)` and `setOutlined(boolean outlined)` **must be called before** `setBounds(Rect rect)`. Both values are used in the calculation of the `Shape`'s path in `setBounds(Rect rect)`.
+The `Shape` methods `setRotation(int rotationDegrees)` and `setOutlined(boolean outlined)` **must be called before** `setBounds(Rect rect)`. Both values are used in the calculation of the `Shape`'s `Path` in `setBounds(Rect rect)`.
 
 Set the `Shape`'s bounds with `setBounds(Rect rect)` -- they must be square. This triggers instantiation and calculation of that `Shape`'s `Path`. Don't call this in `onDraw(Canvas canvas)`, as it is a relatively expensive operation.
 
