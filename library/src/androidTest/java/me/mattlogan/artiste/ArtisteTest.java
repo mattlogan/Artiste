@@ -35,6 +35,16 @@ public class ArtisteTest extends MockitoUnitTestCase {
         assertEquals(paint, artiste.paint);
     }
 
+    public void testOnCanvasThrowsExceptionIfShapeOrPaintNotSet() {
+        artiste.shape = shape;
+        try {
+            artiste.onCanvas(canvas);
+            fail("Should have thrown IllegalStateException");
+        } catch (IllegalStateException e) {
+            // success
+        }
+    }
+
     public void testOnCanvas() {
         artiste.shape = shape;
         artiste.paint = paint;
