@@ -24,6 +24,12 @@ protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 }
 ```
 
+A `Shape` can be rotated by calling `setRotation(int rotationDegrees)`. This is optional. The default value is `0`.
+
+A `RegularStarPolygon` can be drawn with strokes connecting each vertex or with only the outline of the star. This is configured by calling `setOutlined(boolean outlined)`. The default value is `false`.
+
+The `Shape` methods `setRotation(int rotationDegrees)` and `setOutlined(boolean outlined)` **must** be called **before** `setBounds(Rect rect)`. Both values are used in the calculation of the `Shape`'s path in `setBounds(Rect rect)`.
+
 Override `onDraw(Canvas canvas)` and tell your `Artiste` to draw your `Shape` with some `Paint` on the `Canvas`.
 
 ```java
