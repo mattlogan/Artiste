@@ -12,10 +12,10 @@ import static java.lang.Math.toRadians;
 public abstract class RegularConvexPolygon extends Shape {
 
     Path path;
-    int rotationDegrees;
+    float rotationDegrees;
 
     @Override
-    public final void setRotation(int rotationDegrees) {
+    public final void setRotation(float rotationDegrees) {
         if (path != null) {
             throw new IllegalStateException("setRotationDegrees() must be called before setBounds()");
         }

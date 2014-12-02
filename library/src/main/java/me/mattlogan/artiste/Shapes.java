@@ -52,7 +52,7 @@ public class Shapes {
         RectF rectF;
 
         @Override
-        public void setRotation(int rotationDegrees) {
+        public void setRotation(float rotationDegrees) {
             // ignore this
         }
 
