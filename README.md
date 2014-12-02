@@ -69,7 +69,7 @@ public static class Octagram extends RegularStarPolygon {
 
 *Note: the "density" of a regular star polygon is the number of vertices, or points, to skip when drawing a line connecting two vertices. For example, one line of a five-pointed star starts at the first vertex, skips the second vertex (moving CW or CCW), and connects with the third vertex. Thus, a five-pointed star has a density of two.*
 
-If your shape is not a regular convex polygon or a regular star polygon, extend `Shape` and override `setBounds(Rect rect)` and `draw(Canvas canvas, Paint paint)`. This is a little trickier. Look at `RegularConvexPolygon`, `RegularStarPolygon`, or `Circle` for guidance.
+If your shape is not a regular convex polygon or a regular star polygon, extend `Shape` and override `setBounds(Rect rect)`, `draw(Canvas canvas, Paint paint)`, and `setRotation(int rotationDegrees)`. This is a little trickier. Look at `RegularConvexPolygon`, `RegularStarPolygon`, or `Circle` for guidance.
 
 ## License
 
