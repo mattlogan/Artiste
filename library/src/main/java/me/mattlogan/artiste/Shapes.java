@@ -52,6 +52,11 @@ public class Shapes {
         RectF rectF;
 
         @Override
+        public void setRotation(int rotationDegrees) {
+            // ignore this
+        }
+
+        @Override
         public void setBounds(Rect rect) {
             rectF = new RectF(rect);
         }

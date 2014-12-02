@@ -12,6 +12,15 @@ import static java.lang.Math.toRadians;
 public abstract class RegularConvexPolygon extends Shape {
 
     Path path;
+    int rotationDegrees;
+
+    @Override
+    public void setRotation(int rotationDegrees) {
+        if (path != null) {
+            throw new IllegalStateException("setRotationDegrees() must be called before setBounds()");
+        }
+        this.rotationDegrees = rotationDegrees;
+    }
 
     @Override
     public void setBounds(Rect rect) {
@@ -28,7 +37,11 @@ public abstract class RegularConvexPolygon extends Shape {
 
         float degreesBetweenPoints = 360f / numPoints;
 
-        float startDegrees = numPoints % 2 != 0 ? 90 : 90 + degreesBetweenPoints / 2f;
+        // Add 90 so first point is top
+        float baseRotation = 90 + rotationDegrees;
+
+        // Assume we want a point of the polygon at the top unless otherwise set
+        float startDegrees = getNumberOfSides() % 2 != 0 ? baseRotation : baseRotation + degreesBetweenPoints / 2f;
 
         path = new Path();
 

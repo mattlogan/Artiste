@@ -17,6 +17,7 @@ public abstract class RegularStarPolygon extends Shape {
 
     Path path;
     boolean outlined;
+    int rotationDegrees;
 
     private static final int START_DEGREES = 90;
 
@@ -25,6 +26,14 @@ public abstract class RegularStarPolygon extends Shape {
             throw new IllegalStateException("setOutlined() must be called before setBounds()");
         }
         this.outlined = outlined;
+    }
+
+    @Override
+    public void setRotation(int rotationDegrees) {
+        if (path != null) {
+            throw new IllegalStateException("setRotationDegrees() must be called before setBounds()");
+        }
+        this.rotationDegrees = rotationDegrees;
     }
 
     @Override
@@ -45,7 +54,10 @@ public abstract class RegularStarPolygon extends Shape {
             throw new IllegalStateException("density must be at least 2");
         }
 
-        float[][] outerPointsArray = makeOuterPointsArray(numPoints, density, START_DEGREES, r);
+        // Add 90 so first point is top
+        int startDegrees = 90 + rotationDegrees;
+
+        float[][] outerPointsArray = makeOuterPointsArray(numPoints, density, startDegrees, r);
 
         if (outlined) {
             // Find the first intersection point created by drawing each line in the star
@@ -55,7 +67,7 @@ public abstract class RegularStarPolygon extends Shape {
             float innerRadius = distance(r, r, firstIntersection[0], firstIntersection[1]);
 
             // Make the array of each point in the star outline
-            float[][] outlinePointsArray = makeOutlinePointsArray(numPoints * 2, START_DEGREES, r, innerRadius);
+            float[][] outlinePointsArray = makeOutlinePointsArray(numPoints * 2, startDegrees, r, innerRadius);
 
             createPath(outlinePointsArray);
         } else {
