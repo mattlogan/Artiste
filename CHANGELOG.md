@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.1.3 *(2014-12-2)*
+--------------------------
+
+* Improved intersection find algorithm in `RegularStarPolygon`
+
 Version 1.1.2 *(2014-12-1)*
 --------------------------
 
