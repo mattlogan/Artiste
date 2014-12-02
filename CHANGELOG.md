@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.1.0 *(2014-12-1)*
+--------------------------
+
+* Added `setRotation(int rotationDegrees)` to `Shape`
+* Added `setOutlined(boolean outlined)` to `RegularStarPolygon`
+
 Version 1.0.5 *(2014-11-30)*
 --------------------------
 
