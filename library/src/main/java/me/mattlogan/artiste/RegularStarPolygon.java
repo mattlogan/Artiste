@@ -88,61 +88,63 @@ public abstract class RegularStarPolygon extends Shape {
         return outerPoints;
     }
 
-    // Brute force intersection finder. Step through x-values and check if y-values match.
     private float[] findFirstIntersectionPoint(float[][] pointsArray) {
-        float[] firstLinePoint1 = pointsArray[0];
-        float[] firstLinePoint2 = pointsArray[1];
+        float[] firstPt1 = pointsArray[0];
+        float[] firstPt2 = pointsArray[1];
 
-        float firstLineSlope = slope(firstLinePoint1, firstLinePoint2);
-        float firstLineYIntercept = yIntercept(firstLinePoint1, firstLineSlope);
+        float firstSlope = slope(firstPt1, firstPt2);
+        float firstYInt = yIntercept(firstPt1, firstSlope);
 
-        float firstLineLowX = firstLinePoint1[0] < firstLinePoint2[0] ? firstLinePoint1[0] : firstLinePoint2[0];
-        float firstLineHighX = firstLinePoint1[0] > firstLinePoint2[0] ? firstLinePoint1[0] : firstLinePoint2[0];
+        // Ranges for first line. We'll use these later to check if the intersection we find
+        // is in the valid range.
+        float firstLowX = min(firstPt1[0], firstPt2[0]);
+        float firstHighX = max(firstPt1[0], firstPt2[0]);
+        float firstLowY = min(firstPt1[0], firstPt2[1]);
+        float firstHighY = max(firstPt1[1], firstPt2[1]);
 
-        int numSteps = 1000;
-        float step = distance(firstLinePoint1, firstLinePoint2) / numSteps;
-
-        // The second line and the last line can't intersect the first line, so skip them
+        // The second line and the last line can't intersect the first line. Skip them.
         for (int i = 2; i < pointsArray.length - 1; i++) {
-            float[] point1 = pointsArray[i];
-            float[] point2 = pointsArray[i + 1];
+            float[] curPt1 = pointsArray[i];
+            float[] curPt2 = pointsArray[i + 1];
 
-            float slope = slope(point1, point2);
-            float yIntercept = point1[1] - slope * point1[0];
+            float curSlope = slope(curPt1, curPt2);
+            float curYInt = curPt1[1] - curSlope * curPt1[0];
 
-            float lowX = point1[0] < point2[0] ? point1[0] : point2[0];
-            float highX = point1[0] > point2[0] ? point1[0] : point2[0];
+            // System of equations. Two equations, two unknowns.
+            // y = firstSlope * x + firstYInt
+            // y = curSlope * x + curYInt
 
-            if (lowX > firstLineHighX || highX < firstLineLowX) {
-                // lines can't intercept because x ranges don't overlap
+            // Solve for x and y in terms of known quantities.
+            // firstSlope * x + firstYInt = curSlope * x + curYInt
+            // firstSlope * x - curSlope * x = curYInt - firstYInt
+            // x * (firstSlope - curSlope) = (curYInt - firstYInt)
+            // x = (curYInt - firstYInt) / (firstSlope - curSlope)
+            // y = firstSlope * x + firstYInt
+
+            if (firstSlope == curSlope) {
+                // lines can't intersect if they are parallel
                 continue;
             }
 
-            // find the range to check for an intersection
-            float startX = max(firstLineLowX, lowX);
-            float endX = min(firstLineHighX, highX);
+            float intersectionX = (curYInt - firstYInt) / (firstSlope - curSlope);
+            float intersectionY = firstSlope * intersectionX + firstYInt;
 
-            float minDiff = Float.MAX_VALUE;
-            float[] minDiffIntersection = new float[2];
+            // Ranges for current line.
+            float curLowX = min(curPt1[0], curPt2[0]);
+            float curHighX = max(curPt1[0], curPt2[0]);
+            float curLowY = min(curPt1[0], curPt2[1]);
+            float curHighY = max(curPt1[1], curPt2[1]);
 
-            // Step through x's in the range where the two x ranges overlap. Find the x-value with
-            // the smallest difference in y-values.
-            for (float x = startX; x <= endX; x += step) {
-                float firstLineY = firstLineSlope * x + firstLineYIntercept;
-                float y = slope * x + yIntercept;
-                float dist = distance(x, firstLineY, x, y);
+            // Range where intersection has to be.
+            float startX = max(firstLowX, curLowX);
+            float endX = min(firstHighX, curHighX);
+            float startY = max(firstLowY, curLowY);
+            float endY = min(firstHighY, curHighY);
 
-                if (dist < minDiff) {
-                    minDiff = dist;
-                    minDiffIntersection[0] = x;
-                    minDiffIntersection[1] = y;
-                }
-            }
-
-            // If the distance between the y-values at some x-value is smaller than a threshold
-            // (we use the step value as the threshold), it's an intersection.
-            if (minDiff < step) {
-                return minDiffIntersection;
+            if (intersectionX > startX && intersectionX < endX &&
+                    intersectionY > startY && intersectionY < endY) {
+                // Found intersection.
+                return new float[] {intersectionX, intersectionY};
             }
         }
 
