@@ -5,6 +5,8 @@ Artiste
 
 Android library for drawing shapes on a canvas
 
+<img src="https://raw.githubusercontent.com/mattlogan/Artiste/master/github_assets/artiste_shapes.png" width="350"/>
+
 ## Usage
 
 In a `View` class, create an `Artiste` and `Shape` instance.
@@ -14,7 +16,7 @@ artiste = new Artiste();
 fivePointedStar = new FivePointedStar();
 ```
 
-A `Shape` can be rotated by calling `setRotation(int rotationDegrees)`. This is optional. The default value is `0`.
+A `Shape` can be rotated by calling `setRotation(float rotationDegrees)`. This is optional. The default value is `0`.
 
 A subclass of `RegularStarPolygon` can be drawn with strokes connecting each vertex or with only the outline of the star. This is configured by calling `setOutlined(boolean outlined)`. The default value is `false`.
 
@@ -23,7 +25,7 @@ fivePointedStar.setRotation(10);
 fivePointedStar.setOutlined(true);
 ```
 
-The `Shape` methods `setRotation(int rotationDegrees)` and `setOutlined(boolean outlined)` **must be called before** `setBounds(Rect rect)`. Both values are used in the calculation of the `Shape`'s `Path` in `setBounds(Rect rect)`.
+The `Shape` methods `setRotation(float rotationDegrees)` and `setOutlined(boolean outlined)` **must be called before** `setBounds(Rect rect)`. Both values are used in the calculation of the `Shape`'s `Path` in `setBounds(Rect rect)`.
 
 Set the `Shape`'s bounds with `setBounds(Rect rect)` -- they must be square. This triggers instantiation and calculation of that `Shape`'s `Path`. Don't call this in `onDraw(Canvas canvas)`, as it is a relatively expensive operation.
 
@@ -74,7 +76,7 @@ public static class Octagram extends RegularStarPolygon {
 
 *Note: the "density" of a regular star polygon is the number of vertices, or points, to skip when drawing a line connecting two vertices. For example, one line of a five-pointed star starts at the first vertex, skips the second vertex (moving CW or CCW), and connects with the third vertex. Thus, a five-pointed star has a density of two.*
 
-If your shape is not a regular convex polygon or a regular star polygon, extend `Shape` and override `setBounds(Rect rect)`, `draw(Canvas canvas, Paint paint)`, and `setRotation(int rotationDegrees)`. This is a little trickier. Look at `RegularConvexPolygon`, `RegularStarPolygon`, or `Circle` for guidance.
+If your shape is not a regular convex polygon or a regular star polygon, extend `Shape` and override `setBounds(Rect rect)`, `draw(Canvas canvas, Paint paint)`, and `setRotation(float rotationDegrees)`. This is a little trickier. Look at `RegularConvexPolygon`, `RegularStarPolygon`, or `Circle` for guidance.
 
 ## License
 
