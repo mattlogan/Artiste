@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.1.2 *(2014-12-1)*
+--------------------------
+
+* Changed setRotation() parameter to float from int
+* Added offsets to path calculation for when `Rect` isn't at origin
+
 Version 1.1.1 *(2014-12-1)*
 --------------------------
 
