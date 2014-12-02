@@ -5,6 +5,8 @@ Artiste
 
 Android library for drawing shapes on a canvas
 
+<img src="https://raw.githubusercontent.com/mattlogan/Artiste/master/github_assets/artiste_shapes.png" width="350"/>
+
 ## Usage
 
 In a `View` class, create an `Artiste` and `Shape` instance.
