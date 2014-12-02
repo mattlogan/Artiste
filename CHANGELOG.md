@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.1.1 *(2014-12-1)*
+--------------------------
+
+* Marked some methods as final
+* Added `RegularConvexPolygonTest` and `RegularStarPolygonTest`
+* Added test in `ArtisteTest`
+
 Version 1.1.0 *(2014-12-1)*
 --------------------------
 
