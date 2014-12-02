@@ -11,8 +11,19 @@ In a `View` class, create an `Artiste` and `Shape` instance.
 
 ```java
 artiste = new Artiste();
-hexagon = new Shapes.Hexagon();
+fivePointedStar = new FivePointedStar();
 ```
+
+A `Shape` can be rotated by calling `setRotation(int rotationDegrees)`. This is optional. The default value is `0`.
+
+A subclass of `RegularStarPolygon` can be drawn with strokes connecting each vertex or with only the outline of the star. This is configured by calling `setOutlined(boolean outlined)`. The default value is `false`.
+
+```java
+fivePointedStar.setRotation(10);
+fivePointedStar.setOutlined(true);
+```
+
+The `Shape` methods `setRotation(int rotationDegrees)` and `setOutlined(boolean outlined)` **must be called before** `setBounds(Rect rect)`. Both values are used in the calculation of the `Shape`'s path in `setBounds(Rect rect)`.
 
 Set the `Shape`'s bounds with `setBounds(Rect rect)` -- they must be square. This triggers instantiation and calculation of that `Shape`'s `Path`. Don't call this in `onDraw(Canvas canvas)`, as it is a relatively expensive operation.
 
@@ -23,12 +34,6 @@ protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     hexagon.setBounds(new Rect(0, 0, w, h));
 }
 ```
-
-A `Shape` can be rotated by calling `setRotation(int rotationDegrees)`. This is optional. The default value is `0`.
-
-A `RegularStarPolygon` can be drawn with strokes connecting each vertex or with only the outline of the star. This is configured by calling `setOutlined(boolean outlined)`. The default value is `false`.
-
-The `Shape` methods `setRotation(int rotationDegrees)` and `setOutlined(boolean outlined)` **must** be called **before** `setBounds(Rect rect)`. Both values are used in the calculation of the `Shape`'s path in `setBounds(Rect rect)`.
 
 Override `onDraw(Canvas canvas)` and tell your `Artiste` to draw your `Shape` with some `Paint` on the `Canvas`.
 
