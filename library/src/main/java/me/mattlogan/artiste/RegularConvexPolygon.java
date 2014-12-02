@@ -30,6 +30,9 @@ public abstract class RegularConvexPolygon extends Shape {
 
         float r = rect.width() / 2f;
 
+        float xOffset = rect.left;
+        float yOffset = rect.top;
+
         int numPoints = getNumberOfSides();
         if (numPoints < 3) {
             throw new IllegalStateException("number of sides must be at least 3");
@@ -48,8 +51,8 @@ public abstract class RegularConvexPolygon extends Shape {
         for (int i = 0; i <= numPoints; i++) {
             double theta = toRadians(startDegrees + i * degreesBetweenPoints);
 
-            float x = (float) (r + (r * cos(theta)));
-            float y = (float) (r - (r * sin(theta)));
+            float x = (float) (xOffset + r + (r * cos(theta)));
+            float y = (float) (yOffset + r - (r * sin(theta)));
 
             if (i == 0) {
                 path.moveTo(x, y);

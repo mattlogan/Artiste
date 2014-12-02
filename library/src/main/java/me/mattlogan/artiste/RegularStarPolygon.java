@@ -17,9 +17,7 @@ public abstract class RegularStarPolygon extends Shape {
 
     Path path;
     boolean outlined;
-    int rotationDegrees;
-
-    private static final int START_DEGREES = 90;
+    float rotationDegrees;
 
     public final void setOutlined(boolean outlined) {
         if (path != null) {
@@ -29,7 +27,7 @@ public abstract class RegularStarPolygon extends Shape {
     }
 
     @Override
-    public final void setRotation(int rotationDegrees) {
+    public final void setRotation(float rotationDegrees) {
         if (path != null) {
             throw new IllegalStateException("setRotationDegrees() must be called before setBounds()");
         }
@@ -44,6 +42,9 @@ public abstract class RegularStarPolygon extends Shape {
 
         float r = rect.width() / 2f;
 
+        float xOffset = rect.left;
+        float yOffset = rect.top;
+
         int numPoints = getNumberOfPoints();
         if (numPoints < 5) {
             throw new IllegalStateException("number of points must be at least 5");
@@ -55,7 +56,7 @@ public abstract class RegularStarPolygon extends Shape {
         }
 
         // Add 90 so first point is top
-        int startDegrees = 90 + rotationDegrees;
+        float startDegrees = 90 + rotationDegrees;
 
         float[][] outerPointsArray = makeOuterPointsArray(numPoints, density, startDegrees, r);
 
@@ -69,9 +70,9 @@ public abstract class RegularStarPolygon extends Shape {
             // Make the array of each point in the star outline
             float[][] outlinePointsArray = makeOutlinePointsArray(numPoints * 2, startDegrees, r, innerRadius);
 
-            createPath(outlinePointsArray);
+            createPath(xOffset, yOffset, outlinePointsArray);
         } else {
-            createPath(outerPointsArray);
+            createPath(xOffset, yOffset, outerPointsArray);
         }
     }
 
@@ -181,11 +182,11 @@ public abstract class RegularStarPolygon extends Shape {
         return outlinePoints;
     }
 
-    private void createPath(float[][] pointsArray) {
+    private void createPath(float xOffset, float yOffset, float[][] pointsArray) {
         path = new Path();
         for (int i = 0; i < pointsArray.length; i++) {
-            float x = pointsArray[i][0];
-            float y = pointsArray[i][1];
+            float x = xOffset + pointsArray[i][0];
+            float y = yOffset + pointsArray[i][1];
 
             if (i == 0) {
                 path.moveTo(x, y);
@@ -193,7 +194,7 @@ public abstract class RegularStarPolygon extends Shape {
                 path.lineTo(x, y);
             }
         }
-        path.lineTo(pointsArray[0][0], pointsArray[0][1]);
+        path.lineTo(xOffset + pointsArray[0][0], yOffset + pointsArray[0][1]);
     }
 
     @Override
