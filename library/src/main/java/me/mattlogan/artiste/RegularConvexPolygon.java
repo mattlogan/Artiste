@@ -15,7 +15,7 @@ public abstract class RegularConvexPolygon extends Shape {
     int rotationDegrees;
 
     @Override
-    public void setRotation(int rotationDegrees) {
+    public final void setRotation(int rotationDegrees) {
         if (path != null) {
             throw new IllegalStateException("setRotationDegrees() must be called before setBounds()");
         }
@@ -23,7 +23,7 @@ public abstract class RegularConvexPolygon extends Shape {
     }
 
     @Override
-    public void setBounds(Rect rect) {
+    public final void setBounds(Rect rect) {
         if (rect.width() != rect.height()) {
             throw new IllegalStateException("rect must be square");
         }
@@ -60,7 +60,7 @@ public abstract class RegularConvexPolygon extends Shape {
     }
 
     @Override
-    public void draw(Canvas canvas, Paint paint) {
+    public final void draw(Canvas canvas, Paint paint) {
         if (path == null) {
             throw new IllegalStateException("setBounds() must be called before draw()");
         }
