@@ -7,49 +7,63 @@ Android library for drawing shapes on a canvas
 
 <img src="https://raw.githubusercontent.com/mattlogan/Artiste/master/github_assets/artiste_shapes.png" width="350"/>
 
-## Usage
+## Overview
 
-In a `View` class, create an `Artiste` and `Shape` instance.
+In a `View` class, create an `Artiste` and a subclass of `Shape`.
 
 ```java
 artiste = new Artiste();
 fivePointedStar = new FivePointedStar();
 ```
 
-A `Shape` can be rotated by calling `setRotation(float rotationDegrees)`. This is optional. The default value is `0`.
-
-A subclass of `RegularStarPolygon` can be drawn with strokes connecting each vertex or with only the outline of the star. This is configured by calling `setOutlined(boolean outlined)`. The default value is `false`.
+Configure your `Shape`.
 
 ```java
 fivePointedStar.setRotation(10);
 fivePointedStar.setOutlined(true);
 ```
 
-The `Shape` methods `setRotation(float rotationDegrees)` and `setOutlined(boolean outlined)` **must be called before** `setBounds(Rect rect)`. Both values are used in the calculation of the `Shape`'s `Path` in `setBounds(Rect rect)`.
-
-Set the `Shape`'s bounds with `setBounds(Rect rect)` -- they must be square. This triggers instantiation and calculation of that `Shape`'s `Path`. Don't call this in `onDraw(Canvas canvas)`, as it is a relatively expensive operation.
+Give it some bounds.
 
 ```java
 @Override
 protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
-    hexagon.setBounds(new Rect(0, 0, w, h));
+    fivePointedStar.setBounds(new Rect(0, 0, w, h));
 }
 ```
 
-Override `onDraw(Canvas canvas)` and tell your `Artiste` to draw your `Shape` with some `Paint` on the `Canvas`.
+Tell your `Artiste` to draw your `Shape` with some `Paint` on the `Canvas`.
 
 ```java
 @Override
 protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-    artiste.drawShape(shape).withPaint(paint).onCanvas(canvas);
+    artiste.drawShape(fivePointedStar).withPaint(paint).onCanvas(canvas);
 }
 ```
 
-## Extend it
+## Ready-made Shapes
 
-`Triangle`, `Square`, `Pentagon`, `Hexagon`, `FivePointedStar`, and `Circle` are defined in the `Shapes` class.
+The `Shapes` class contains some ready-made shapes: `Triangle`, `Square`, `Pentagon`, `Hexagon`, `FivePointedStar`, and `Circle`. These shapes are interchangeable and can be used as in the example above.
+
+`Triangle`, `Square`, `Pentagon`, and `Hexagon` inherit from `RegularConvexPolygon`, which inherits from `Shape`.
+
+`FivePointedStar` inherits from `RegularStarPolygon`, which also inherits from `Shape`.
+
+`Circle` inherits directly from `Shape`.
+
+## Configuration
+
+Any `Shape` can be rotated with `setRotation(float rotationDegrees)`.
+
+Any subclass of `RegularStarPolygon`, including `FivePointedStar`, can be drawn with strokes connecting each vertex or with only the outline of the star. This is set by calling `setOutlined(boolean outlined)`.
+
+For example, the value of `outlined` for the red five-pointed star above is `true`. For the green eight-pointed star above, it's `false`.
+
+Both configuration methods must be called before `setBounds(Rect rect)`.
+
+## Unlimited Shapes
 
 To create a new shape, extend `RegularConvexPolygon` or `RegularStarPolygon` if the shape you wish to draw is either of these kinds of shapes (search for "Regular Polygon" on Wikipedia for reference). For example:
 
@@ -76,7 +90,7 @@ public static class Octagram extends RegularStarPolygon {
 
 *Note: the "density" of a regular star polygon is the number of vertices, or points, to skip when drawing a line connecting two vertices. For example, one line of a five-pointed star starts at the first vertex, skips the second vertex (moving CW or CCW), and connects with the third vertex. Thus, a five-pointed star has a density of two.*
 
-If your shape is not a regular convex polygon or a regular star polygon, extend `Shape` and override `setBounds(Rect rect)`, `draw(Canvas canvas, Paint paint)`, and `setRotation(float rotationDegrees)`. This is a little trickier. Look at `RegularConvexPolygon`, `RegularStarPolygon`, or `Circle` for guidance.
+If your shape is not a regular convex polygon or a regular star polygon, you can directly extend `Shape`. This is a little trickier. Look at `RegularConvexPolygon`, `RegularStarPolygon`, or `Circle` for guidance.
 
 ## License
 
