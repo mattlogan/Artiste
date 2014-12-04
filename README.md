@@ -13,7 +13,7 @@ Artiste is on jCenter.
 
 ```
 repositories {
-        jcenter()
+    jcenter()
 }
 
 dependencies {
