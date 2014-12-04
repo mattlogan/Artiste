@@ -156,10 +156,6 @@ public abstract class RegularStarPolygon extends Shape {
         return (point2[1] - point1[1]) / (point2[0] - point1[0]);
     }
 
-    private float distance(float[] point1, float[] point2) {
-        return distance(point1[0], point1[1], point2[0], point2[1]);
-    }
-
     private float distance(float x1, float y1, float x2, float y2) {
         return (float) sqrt(pow(y2 - y1, 2) + pow(x2 - x1, 2));
     }
