@@ -1,10 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.mattlogan.artiste">
+          package="me.mattlogan.artiste">
 
     <application android:allowBackup="true"
-                 android:label="@string/app_name"
-                 android:icon="@drawable/ic_launcher">
-
-    </application>
+                 android:label="@string/app_name" />
 
 </manifest>

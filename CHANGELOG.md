@@ -1,7 +1,12 @@
 Change Log
 ==========
 
-Version 1.1.4 *(2014-12-2)*
+Version 1.1.4 *(2014-12-3)*
+--------------------------
+
+* Prepare for jCenter release with fixes
+
+Version 1.1.4 *(2014-12-3)*
 --------------------------
 
 * Prepare for jCenter release

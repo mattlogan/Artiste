@@ -1,9 +1,9 @@
 apply plugin: 'com.android.library'
 
 ext {
-    PUBLISH_GROUP_ID = 'com.mattlogan'
+    PUBLISH_GROUP_ID = 'me.mattlogan.artiste'
     PUBLISH_ARTIFACT_ID = 'artiste'
-    PUBLISH_VERSION = '1.1.4'
+    PUBLISH_VERSION = '1.1.5'
 }
 
 android {
@@ -11,11 +11,11 @@ android {
     buildToolsVersion "21.0.0"
 
     defaultConfig {
-        applicationId "com.mattlogan.artiste"
+        applicationId "me.mattlogan.artiste"
         minSdkVersion 10
         targetSdkVersion 21
         versionCode 1
-        versionName "1.1.4"
+        versionName "1.1.5"
     }
 }
 
