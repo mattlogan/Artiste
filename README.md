@@ -92,8 +92,15 @@ public static class Octagram extends RegularStarPolygon {
 
 If your shape is not a regular convex polygon or a regular star polygon, you can directly extend `Shape`. This is a little trickier. Look at `RegularConvexPolygon`, `RegularStarPolygon`, or `Circle` for guidance.
 
+## Two Ways About It
+
+The `Artiste` class only serves to provide a fluent API on top of the `Shape` class.
+
+If you wish to forego creation of an `Artiste` instance, you may instead call `draw(Canvas canvas, Paint paint)` on your `Shape` with the same result.
+
 ## License
 
+```
 The MIT License (MIT)
 
 Copyright (c) 2014 Matthew Logan
@@ -115,3 +122,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```
