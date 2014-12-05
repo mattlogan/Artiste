@@ -11,13 +11,13 @@ Android library for drawing shapes on a canvas
 
 Artiste is on jCenter.
 
-```
+```groovy
 repositories {
     jcenter()
 }
 ```
 
-```
+```groovy
 dependencies {
     compile 'me.mattlogan.artiste:artiste:1.1.5'
 }
