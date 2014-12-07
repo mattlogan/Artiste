@@ -1,7 +1,5 @@
 package me.mattlogan.artiste;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 
@@ -13,29 +11,12 @@ import static java.lang.Math.sin;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.toRadians;
 
-public abstract class RegularStarPolygon extends Shape {
+public abstract class RegularStarPolygon implements Shape {
 
     Path path;
-    boolean outlined;
-    float rotationDegrees;
-
-    public final void setOutlined(boolean outlined) {
-        if (path != null) {
-            throw new IllegalStateException("setOutlined() must be called before setBounds()");
-        }
-        this.outlined = outlined;
-    }
 
     @Override
-    public final void setRotation(float rotationDegrees) {
-        if (path != null) {
-            throw new IllegalStateException("setRotationDegrees() must be called before setBounds()");
-        }
-        this.rotationDegrees = rotationDegrees;
-    }
-
-    @Override
-    public final void setBounds(Rect rect) {
+    public final void calculatePath(Rect rect, float rotationDegrees) {
         if (rect.width() != rect.height()) {
             throw new IllegalStateException("rect must be square");
         }
@@ -60,7 +41,7 @@ public abstract class RegularStarPolygon extends Shape {
 
         float[][] outerPointsArray = makeOuterPointsArray(numPoints, density, startDegrees, r);
 
-        if (outlined) {
+        if (isOutlined()) {
             // Find the first intersection point created by drawing each line in the star
             float[] firstIntersection = findFirstIntersectionPoint(outerPointsArray);
 
@@ -196,11 +177,11 @@ public abstract class RegularStarPolygon extends Shape {
     }
 
     @Override
-    public final void draw(Canvas canvas, Paint paint) {
+    public final Path getPath() {
         if (path == null) {
-            throw new IllegalStateException("setBounds() must be called before draw()");
+            throw new IllegalStateException("calculatePath() must be called before getPath()");
         }
-        canvas.drawPath(path, paint);
+        return path;
     }
 
     public abstract int getNumberOfPoints();
@@ -209,4 +190,6 @@ public abstract class RegularStarPolygon extends Shape {
     // connecting two of its points. For example, a line in a five-pointed star connects
     // the first and third points, so its density is two.
     public abstract int getDensity();
+
+    public abstract boolean isOutlined();
 }

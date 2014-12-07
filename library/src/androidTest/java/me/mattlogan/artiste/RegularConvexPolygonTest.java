@@ -34,13 +34,13 @@ public class RegularConvexPolygonTest extends MockitoUnitTestCase {
     }
 
     public void testSetBoundsWithSquareRectCreatesPath() {
-        regularConvexPolygon.setBounds(new Rect(0, 0, 100, 100));
+        regularConvexPolygon.calculatePath(new Rect(0, 0, 100, 100));
         assertNotNull(regularConvexPolygon.path);
     }
 
     public void testSetBoundsWithNonSquareRectThrowsException() {
         try {
-            regularConvexPolygon.setBounds(new Rect(0, 0, 99, 100));
+            regularConvexPolygon.calculatePath(new Rect(0, 0, 99, 100));
             fail("Should have thrown IllegalStateException");
         } catch (IllegalStateException e) {
             // success

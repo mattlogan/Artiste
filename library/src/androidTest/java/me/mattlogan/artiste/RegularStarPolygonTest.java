@@ -44,13 +44,13 @@ public class RegularStarPolygonTest extends MockitoUnitTestCase {
     }
 
     public void testSetBoundsWithSquareRectCreatesPath() {
-        regularStarPolygon.setBounds(new Rect(0, 0, 100, 100));
+        regularStarPolygon.calculatePath(new Rect(0, 0, 100, 100));
         assertNotNull(regularStarPolygon.path);
     }
 
     public void testSetBoundsWithNonSquareRectThrowsException() {
         try {
-            regularStarPolygon.setBounds(new Rect(0, 0, 99, 100));
+            regularStarPolygon.calculatePath(new Rect(0, 0, 99, 100));
             fail("Should have thrown IllegalStateException");
         } catch (IllegalStateException e) {
             // success

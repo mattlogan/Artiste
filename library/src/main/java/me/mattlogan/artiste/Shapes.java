@@ -1,7 +1,6 @@
 package me.mattlogan.artiste;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
@@ -45,25 +44,27 @@ public class Shapes {
         public int getDensity() {
             return 2;
         }
+
+        @Override
+        public boolean isOutlined() {
+            return true;
+        }
     }
 
-    public static class Circle extends Shape {
+    public static class Circle implements Shape {
 
-        RectF rectF;
+        private Path path;
 
         @Override
-        public void setRotation(float rotationDegrees) {
-            // ignore this
+        public void calculatePath(Rect rect, float rotationDegrees) {
+            path = new Path();
+            // sweep angle is mod 360, so we can't actually use 360.
+            path.arcTo(new RectF(rect), 0, 359.9999f);
         }
 
         @Override
-        public void setBounds(Rect rect) {
-            rectF = new RectF(rect);
-        }
-
-        @Override
-        public void draw(Canvas canvas, Paint paint) {
-            canvas.drawArc(rectF, 0, 360, false, paint);
+        public Path getPath() {
+            return path;
         }
     }
 }

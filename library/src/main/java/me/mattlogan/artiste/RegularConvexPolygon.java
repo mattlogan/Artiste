@@ -1,7 +1,5 @@
 package me.mattlogan.artiste;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 
@@ -9,21 +7,12 @@ import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 import static java.lang.Math.toRadians;
 
-public abstract class RegularConvexPolygon extends Shape {
+public abstract class RegularConvexPolygon implements Shape {
 
     Path path;
-    float rotationDegrees;
 
     @Override
-    public final void setRotation(float rotationDegrees) {
-        if (path != null) {
-            throw new IllegalStateException("setRotationDegrees() must be called before setBounds()");
-        }
-        this.rotationDegrees = rotationDegrees;
-    }
-
-    @Override
-    public final void setBounds(Rect rect) {
+    public final void calculatePath(Rect rect, float rotationDegrees) {
         if (rect.width() != rect.height()) {
             throw new IllegalStateException("rect must be square");
         }
@@ -63,11 +52,11 @@ public abstract class RegularConvexPolygon extends Shape {
     }
 
     @Override
-    public final void draw(Canvas canvas, Paint paint) {
+    public final Path getPath() {
         if (path == null) {
-            throw new IllegalStateException("setBounds() must be called before draw()");
+            throw new IllegalStateException("calculatePath() must be called before getPath()");
         }
-        canvas.drawPath(path, paint);
+        return path;
     }
 
     public abstract int getNumberOfSides();
