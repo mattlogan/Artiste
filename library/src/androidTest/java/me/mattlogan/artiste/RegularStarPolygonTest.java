@@ -1,19 +1,10 @@
 package me.mattlogan.artiste;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Rect;
 
-import org.mockito.Mock;
+import junit.framework.TestCase;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
-public class RegularStarPolygonTest extends MockitoUnitTestCase {
-
-    @Mock Canvas canvas;
-    @Mock Paint paint;
+public class RegularStarPolygonTest extends TestCase {
 
     RegularStarPolygon regularStarPolygon;
 
@@ -23,34 +14,14 @@ public class RegularStarPolygonTest extends MockitoUnitTestCase {
         regularStarPolygon = new Shapes.FivePointedStar();
     }
 
-    public void testSetOutlinedThrowsExceptionIfPathAlreadySet() {
-        regularStarPolygon.path = new Path();
-        try {
-            regularStarPolygon.setOutlined(true);
-            fail("Should have thrown IllegalStateException");
-        } catch (IllegalStateException e) {
-            // success
-        }
+    public void testCalculatePathWithSquareRectCreatesPath() {
+        regularStarPolygon.calculatePath(new Rect(0, 0, 100, 100), 0);
+        assertNotNull(regularStarPolygon.getPath());
     }
 
-    public void testSetRotationThrowsExceptionIfPathAlreadySet() {
-        regularStarPolygon.path = new Path();
+    public void testCalculatePathWithNonSquareRectThrowsException() {
         try {
-            regularStarPolygon.setRotation(0);
-            fail("Should have thrown IllegalStateException");
-        } catch (IllegalStateException e) {
-            // success
-        }
-    }
-
-    public void testSetBoundsWithSquareRectCreatesPath() {
-        regularStarPolygon.calculatePath(new Rect(0, 0, 100, 100));
-        assertNotNull(regularStarPolygon.path);
-    }
-
-    public void testSetBoundsWithNonSquareRectThrowsException() {
-        try {
-            regularStarPolygon.calculatePath(new Rect(0, 0, 99, 100));
+            regularStarPolygon.calculatePath(new Rect(0, 0, 99, 100), 0);
             fail("Should have thrown IllegalStateException");
         } catch (IllegalStateException e) {
             // success
@@ -58,18 +29,12 @@ public class RegularStarPolygonTest extends MockitoUnitTestCase {
         assertNull(regularStarPolygon.path);
     }
 
-    public void testDrawThrowsExceptionIfPathNotSet() {
+    public void testGetPathThrowsExceptionIfPathNotSet() {
         try {
-            regularStarPolygon.draw(canvas, paint);
+            regularStarPolygon.getPath();
             fail("Should have thrown IllegalStateException");
         } catch (IllegalStateException e) {
             // success
         }
-    }
-
-    public void testDrawCallsDrawPath() {
-        regularStarPolygon.path = new Path();
-        regularStarPolygon.draw(canvas, paint);
-        verify(canvas, times(1)).drawPath(regularStarPolygon.path, paint);
     }
 }
