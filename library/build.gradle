@@ -8,10 +8,9 @@ ext {
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.0.0"
+    buildToolsVersion "21.1.1"
 
     defaultConfig {
-        applicationId "me.mattlogan.artiste"
         minSdkVersion 10
         targetSdkVersion 21
         versionCode 1
