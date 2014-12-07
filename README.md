@@ -19,7 +19,7 @@ repositories {
 
 ```groovy
 dependencies {
-    compile 'me.mattlogan.artiste:artiste:1.1.5'
+    compile 'me.mattlogan.artiste:artiste:2.0.0'
 }
 ```
 
