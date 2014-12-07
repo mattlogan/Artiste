@@ -25,37 +25,29 @@ dependencies {
 
 ## Overview
 
-In a `View` class, create an `Artiste` and a subclass of `Shape`.
+In a `View` class, create a subclass of `Shape`.
 
 ```java
-artiste = new Artiste();
 fivePointedStar = new FivePointedStar();
 ```
 
-Configure your `Shape`.
-
-```java
-fivePointedStar.setRotation(10);
-fivePointedStar.setOutlined(true);
-```
-
-Give it some bounds.
+Call `calculatePath(Rect rect, float rotationDegrees)` to create the `Shape`'s `Path`.
 
 ```java
 @Override
 protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
-    fivePointedStar.setBounds(new Rect(0, 0, w, h));
+    fivePointedStar.calculatePath(new Rect(0, 0, w, h), 10);
 }
 ```
 
-Tell your `Artiste` to draw your `Shape` with some `Paint` on the `Canvas`.
+Get your `Shape`'s `Path` with `getPath()`, and draw it on a `Canvas`.
 
 ```java
 @Override
 protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-    artiste.drawShape(fivePointedStar).withPaint(paint).onCanvas(canvas);
+    canvas.drawPath(fivePointedStar.getPath(), paint);
 }
 ```
 
@@ -71,13 +63,11 @@ The `Shapes` class contains some ready-made shapes: `Triangle`, `Square`, `Penta
 
 ## Configuration
 
-Any `Shape` can be rotated with `setRotation(float rotationDegrees)`.
+Any `Shape` can be rotated with the `rotationDegrees` parameter of `calculatePath(Rect rect, float rotationDegrees)`.
 
-Any subclass of `RegularStarPolygon`, including `FivePointedStar`, can be drawn with strokes connecting each vertex or with only the outline of the star. This is set by calling `setOutlined(boolean outlined)`.
+Any subclass of `RegularStarPolygon`, including `FivePointedStar`, can be drawn with strokes connecting each vertex or with only the outline of the star. This is set by calling overriding `isOutlined(boolean outlined)`.
 
 For example, the value of `outlined` for the red five-pointed star above is `true`. For the green eight-pointed star above, it's `false`.
-
-Both configuration methods must be called before `setBounds(Rect rect)`.
 
 ## Unlimited Shapes
 
@@ -101,18 +91,17 @@ public static class Octagram extends RegularStarPolygon {
     public int getDensity() {
         return 3;
     }
+
+    @Override
+    public boolean isOutlined() {
+        return false;
+    }
 }
 ```
 
 *Note: the "density" of a regular star polygon is the number of vertices, or points, to skip when drawing a line connecting two vertices. For example, one line of a five-pointed star starts at the first vertex, skips the second vertex (moving CW or CCW), and connects with the third vertex. Thus, a five-pointed star has a density of two.*
 
 If your shape is not a regular convex polygon or a regular star polygon, you can directly extend `Shape`. This is a little trickier. Look at `RegularConvexPolygon`, `RegularStarPolygon`, or `Circle` for guidance.
-
-## Two Ways About It
-
-The `Artiste` class only serves to provide a fluent API on top of the `Shape` class.
-
-If you wish to forego creation of an `Artiste` instance, you may instead call `draw(Canvas canvas, Paint paint)` on your `Shape` with the same result.
 
 ## License
 

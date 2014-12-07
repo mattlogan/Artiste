@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 2.0.0 *(2014-12-7)*
+--------------------------
+
+* Big API change -- let Canvas do drawing, Shape only responsible for Path
+
 Version 1.1.4 *(2014-12-3)*
 --------------------------
 
