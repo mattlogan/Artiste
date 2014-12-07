@@ -65,7 +65,7 @@ The `Shapes` class contains some ready-made shapes: `Triangle`, `Square`, `Penta
 
 Any `Shape` can be rotated with the `rotationDegrees` parameter of `calculatePath(Rect rect, float rotationDegrees)`.
 
-Any subclass of `RegularStarPolygon`, including `FivePointedStar`, can be drawn with strokes connecting each vertex or with only the outline of the star. This is set by calling overriding `isOutlined(boolean outlined)`.
+Any subclass of `RegularStarPolygon`, including `FivePointedStar`, can be drawn with strokes connecting each vertex or with only the outline of the star. This is set by overriding `isOutlined(boolean outlined)`.
 
 For example, the value of `outlined` for the red five-pointed star above is `true`. For the green eight-pointed star above, it's `false`.
 
