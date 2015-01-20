@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 2.0.1 *(2014-1-20)*
+--------------------------
+
+* Stripped AndroidManifest.xml to fix manifest merging conflicts
+* Added example module
+* Upgraded build tools to 2.1.2
+
 Version 2.0.0 *(2014-12-7)*
 --------------------------
 
