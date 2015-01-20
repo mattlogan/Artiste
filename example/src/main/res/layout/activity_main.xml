@@ -9,7 +9,7 @@
                 android:paddingTop="@dimen/activity_vertical_margin"
                 tools:context=".MainActivity">
 
-    <me.mattlogan.artiste.example.ShapeView
+    <me.mattlogan.artiste.example.AssortedShapeView
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_centerInParent="true"/>

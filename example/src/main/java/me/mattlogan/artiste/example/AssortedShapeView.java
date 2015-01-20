@@ -9,7 +9,7 @@ import android.view.View;
 
 import me.mattlogan.artiste.Shapes;
 
-public class ShapeView extends View {
+public class AssortedShapeView extends View {
 
     Shapes.Hexagon hexagon;
     Shapes.FivePointedStar fivePointedStar;
@@ -25,17 +25,17 @@ public class ShapeView extends View {
     Paint octagramPaint;
     Paint pentagonPaint;
 
-    public ShapeView(Context context) {
+    public AssortedShapeView(Context context) {
         super(context);
         init();
     }
 
-    public ShapeView(Context context, AttributeSet attrs) {
+    public AssortedShapeView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public ShapeView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AssortedShapeView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
