@@ -1,16 +1,6 @@
 package me.mattlogan.artiste;
 
 import android.graphics.Path;
-import android.graphics.RectF;
-
-import static java.lang.Math.cos;
-import static java.lang.Math.max;
-import static java.lang.Math.min;
-import static java.lang.Math.sin;
-import static java.lang.Math.toRadians;
-import static me.mattlogan.artiste.LineMath.distance;
-import static me.mattlogan.artiste.LineMath.slope;
-import static me.mattlogan.artiste.LineMath.yIntercept;
 
 /**
  * Created by Matt Logan on 2/22/15.
