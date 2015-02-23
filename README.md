@@ -1,9 +1,7 @@
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Artiste-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1177)
-
 Artiste
 =======
 
-Android library for drawing shapes on a canvas
+Artiste is a collection of static methods for creating `Path` objects initialized with different shapes.
 
 <img src="https://raw.githubusercontent.com/mattlogan/Artiste/master/github_assets/artiste_shapes.png" width="350"/>
 
@@ -19,89 +17,111 @@ repositories {
 
 ```groovy
 dependencies {
-    compile 'me.mattlogan.artiste:artiste:2.0.1'
+    compile 'me.mattlogan.artiste:artiste:3.0.0'
 }
 ```
 
 ## Overview
 
-In a `View` class, create a subclass of `Shape`.
+The `Artiste` class contains the entirety of the public API for this library. It contains seven methods, including:
 
-```java
-fivePointedStar = new FivePointedStar();
-```
+1. Two methods for creating regular convex polygons.
+2. Four methods for creating regular star polygons.
+3. One method for creating a circle.
 
-Call `calculatePath(Rect rect, float rotationDegrees)` to create the `Shape`'s `Path`.
+## The API
 
-```java
-@Override
-protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-    super.onSizeChanged(w, h, oldw, oldh);
-    fivePointedStar.calculatePath(new Rect(0, 0, w, h), 10);
-}
-```
+##### `public static Path createRegularConvexPolygon(int left, int top, int right, int bottom, int numSides)`
 
-Get your `Shape`'s `Path` with `getPath()`, and draw it on a `Canvas`.
+Creates a regular convex polygon Path. 
 
-```java
-@Override
-protected void onDraw(Canvas canvas) {
-    super.onDraw(canvas);
-    canvas.drawPath(fivePointedStar.getPath(), paint);
-}
-```
+ * **Parameters:**
+   * `left` — Left bound
+   * `top` — Top bound
+   * `right` — Right bound
+   * `bottom` — Bottom bound
+   * `numSides` — Number of sides
+ * **Returns:** A Path corresponding to a regular convex polygon. Uses rotation value of 0.
 
-## Ready-made Shapes
+##### `public static Path createRegularConvexPolygon(int left, int top, int right, int bottom, int numSides, float rotationDegrees)`
 
-The `Shapes` class contains some ready-made shapes: `Triangle`, `Square`, `Pentagon`, `Hexagon`, `FivePointedStar`, and `Circle`. These shapes are interchangeable and can be used as in the example above.
+Creates a regular convex polygon Path.
 
-`Triangle`, `Square`, `Pentagon`, and `Hexagon` inherit from `RegularConvexPolygon`, which inherits from `Shape`.
+ * **Parameters:**
+   * `left` — Left bound
+   * `top` — Top bound
+   * `right` — Right bound
+   * `bottom` — Bottom bound
+   * `numSides` — Number of sides
+   * `rotationDegrees` — Degrees to rotate polygon
+ * **Returns:** A Path corresponding to a regular convex polygon.
 
-`FivePointedStar` inherits from `RegularStarPolygon`, which also inherits from `Shape`.
+##### `public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density)`
 
-`Circle` inherits directly from `Shape`.
+Creates a regular star polygon Path. 
 
-## Configuration
+ * **Parameters:**
+   * `left` — Left bound
+   * `top` — Top bound
+   * `right` — Right bound
+   * `bottom` — Bottom bound
+   * `numPoints` — Number of points on star
+   * `density` — Density of the star polygon (the number of vertices, or points, to skip when drawing a line connecting two vertices.) rotation value of 0, and draws only the outline by default.
+ * **Returns:** A Path corresponding to a regular star polygon. Uses a
 
-Any `Shape` can be rotated with the `rotationDegrees` parameter of `calculatePath(Rect rect, float rotationDegrees)`.
+##### `public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density, float rotationDegrees)`
 
-Any subclass of `RegularStarPolygon`, including `FivePointedStar`, can be drawn with strokes connecting each vertex or with only the outline of the star. This is set by overriding `isOutlined(boolean outlined)`.
+Creates a regular star polygon Path. 
 
-For example, the value of `outlined` for the red five-pointed star above is `true`. For the green eight-pointed star above, it's `false`.
+ * **Parameters:**
+   * `left` — Left bound
+   * `top` — Top bound
+   * `right` — Right bound
+   * `bottom` — Bottom bound
+   * `numPoints` — Number of points on star
+   * `density` — Density of the star polygon (the number of vertices, or points, to skip when drawing a line connecting two vertices.)
+   * `rotationDegrees` — Number of degrees to rotate star polygon
+ * **Returns:** A Path corresponding to a regular star polygon. Draws only the outline by default.
 
-## Unlimited Shapes
+##### `public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density, boolean outline)`
 
-To create a new shape, extend `RegularConvexPolygon` or `RegularStarPolygon` if the shape you wish to draw is either of these kinds of shapes (search for "Regular Polygon" on Wikipedia for reference). For example:
+Creates a regular star polygon Path. 
 
-```java
-public static class Tridecagon extends RegularConvexPolygon {
-    @Override
-    public int getNumberOfSides() {
-        return 13;
-    }
-}
+ * **Parameters:**
+   * `left` — Left bound
+   * `top` — Top bound
+   * `right` — Right bound
+   * `bottom` — Bottom bound
+   * `numPoints` — Number of points on star
+   * `density` — Density of the star polygon (the number of vertices, or points, to skip when drawing a line connecting two vertices.) will be drawn connecting the star's vertices.
+   * `outline` — True if only the star's outline should be drawn. If false, complete lines
+ * **Returns:** A Path corresponding to a regular star polygon. Uses a rotation value of 0.
 
-public static class Octagram extends RegularStarPolygon {
-    @Override
-    public int getNumberOfPoints() {
-        return 8;
-    }
-    
-    @Override
-    public int getDensity() {
-        return 3;
-    }
+##### `public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density, float rotationDegrees, boolean outline)`
 
-    @Override
-    public boolean isOutlined() {
-        return false;
-    }
-}
-```
+Creates a regular star polygon Path. 
 
-*Note: the "density" of a regular star polygon is the number of vertices, or points, to skip when drawing a line connecting two vertices. For example, one line of a five-pointed star starts at the first vertex, skips the second vertex (moving CW or CCW), and connects with the third vertex. Thus, a five-pointed star has a density of two.*
+ * **Parameters:**
+   * `left` — Left bound
+   * `top` — Top bound
+   * `right` — Right bound
+   * `bottom` — Bottom bound
+   * `numPoints` — Number of points on star
+   * `density` — Density of the star polygon (the number of vertices, or points, to skip when drawing a line connecting two vertices.)
+   * `rotationDegrees` — Number of degrees to rotate star polygon
+   * `outline` — True if only the star's outline should be drawn. If false, complete lines will be drawn connecting the star's vertices.
+ * **Returns:** A Path corresponding to a regular star polygon.
 
-If your shape is not a regular convex polygon or a regular star polygon, you can directly extend `Shape`. This is a little trickier. Look at `RegularConvexPolygon`, `RegularStarPolygon`, or `Circle` for guidance.
+##### `public static Path createCircle(int left, int top, int right, int bottom)`
+
+Creates a circle Path.
+
+ * **Parameters:**
+   * `left` — Left bound
+   * `top` — Top bound
+   * `right` — Right bound
+   * `bottom` — Bottom bound
+ * **Returns:** A Path corresponding to a circle.
 
 ## License
 
