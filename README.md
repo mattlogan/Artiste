@@ -31,7 +31,7 @@ The `Artiste` class contains the entirety of the public API for this library. It
 
 ## The API
 
-##### `public static Path createRegularConvexPolygon(int left, int top, int right, int bottom, int numSides)`
+**public static Path createRegularConvexPolygon(int left, int top, int right, int bottom, int numSides)**
 
 Creates a regular convex polygon Path. 
 
@@ -43,7 +43,7 @@ Creates a regular convex polygon Path.
    * `numSides` — Number of sides
  * **Returns:** A Path corresponding to a regular convex polygon. Uses rotation value of 0.
 
-##### `public static Path createRegularConvexPolygon(int left, int top, int right, int bottom, int numSides, float rotationDegrees)`
+**public static Path createRegularConvexPolygon(int left, int top, int right, int bottom, int numSides, float rotationDegrees)**
 
 Creates a regular convex polygon Path.
 
@@ -56,7 +56,7 @@ Creates a regular convex polygon Path.
    * `rotationDegrees` — Degrees to rotate polygon
  * **Returns:** A Path corresponding to a regular convex polygon.
 
-##### `public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density)`
+**public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density)**
 
 Creates a regular star polygon Path. 
 
@@ -69,7 +69,7 @@ Creates a regular star polygon Path.
    * `density` — Density of the star polygon (the number of vertices, or points, to skip when drawing a line connecting two vertices.) rotation value of 0, and draws only the outline by default.
  * **Returns:** A Path corresponding to a regular star polygon. Uses a
 
-##### `public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density, float rotationDegrees)`
+**public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density, float rotationDegrees)**
 
 Creates a regular star polygon Path. 
 
@@ -83,7 +83,7 @@ Creates a regular star polygon Path.
    * `rotationDegrees` — Number of degrees to rotate star polygon
  * **Returns:** A Path corresponding to a regular star polygon. Draws only the outline by default.
 
-##### `public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density, boolean outline)`
+**public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density, boolean outline)**
 
 Creates a regular star polygon Path. 
 
@@ -97,7 +97,7 @@ Creates a regular star polygon Path.
    * `outline` — True if only the star's outline should be drawn. If false, complete lines
  * **Returns:** A Path corresponding to a regular star polygon. Uses a rotation value of 0.
 
-##### `public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density, float rotationDegrees, boolean outline)`
+**public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density, float rotationDegrees, boolean outline)**
 
 Creates a regular star polygon Path. 
 
@@ -112,7 +112,7 @@ Creates a regular star polygon Path.
    * `outline` — True if only the star's outline should be drawn. If false, complete lines will be drawn connecting the star's vertices.
  * **Returns:** A Path corresponding to a regular star polygon.
 
-##### `public static Path createCircle(int left, int top, int right, int bottom)`
+**public static Path createCircle(int left, int top, int right, int bottom)`**
 
 Creates a circle Path.
 
