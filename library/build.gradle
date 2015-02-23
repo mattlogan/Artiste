@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 ext {
     PUBLISH_GROUP_ID = 'me.mattlogan.artiste'
     PUBLISH_ARTIFACT_ID = 'artiste'
-    PUBLISH_VERSION = '2.0.1'
+    PUBLISH_VERSION = '3.0.0'
 }
 
 android {
@@ -13,8 +13,8 @@ android {
     defaultConfig {
         minSdkVersion 10
         targetSdkVersion 21
-        versionCode 2
-        versionName "2.0.1"
+        versionCode 3
+        versionName "3.0.0"
     }
 }
 

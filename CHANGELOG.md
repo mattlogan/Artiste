@@ -1,7 +1,12 @@
 Change Log
 ==========
 
-Version 2.0.1 *(2014-1-20)*
+Version 3.0.0 *(2015-2-22)*
+--------------------------
+
+* Changed API to collection of static methods for creating Path objects
+
+Version 2.0.1 *(2015-1-20)*
 --------------------------
 
 * Stripped AndroidManifest.xml to fix manifest merging conflicts
