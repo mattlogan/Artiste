@@ -112,7 +112,7 @@ Creates a regular star polygon Path.
    * `outline` — True if only the star's outline should be drawn. If false, complete lines will be drawn connecting the star's vertices.
  * **Returns:** A Path corresponding to a regular star polygon.
 
-**public static Path createCircle(int left, int top, int right, int bottom)`**
+**public static Path createCircle(int left, int top, int right, int bottom)**
 
 Creates a circle Path.
 
