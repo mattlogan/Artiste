@@ -85,9 +85,9 @@ Creates a regular star polygon Path.
    * `rotationDegrees` — Number of degrees to rotate star polygon
  * **Returns:** A Path corresponding to a regular star polygon. Draws only the outline by default.
 
-**public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density, boolean outline)**
-
 ### Regular Star Polygons
+
+**public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density, boolean outline)**
 
 Creates a regular star polygon Path. 
 
