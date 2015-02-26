@@ -31,7 +31,7 @@ The `Artiste` class contains the entirety of the public API for this library. It
 
 ## The API
 
-# Regular Convex Polygons
+### Regular Convex Polygons
 
 **public static Path createRegularConvexPolygon(int left, int top, int right, int bottom, int numSides)**
 
@@ -87,7 +87,7 @@ Creates a regular star polygon Path.
 
 **public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density, boolean outline)**
 
-# Regular Star Polygons
+### Regular Star Polygons
 
 Creates a regular star polygon Path. 
 
@@ -118,7 +118,7 @@ Creates a regular star polygon Path.
 
 **public static Path createCircle(int left, int top, int right, int bottom)**
 
-# Circles
+### Circles
 
 Creates a circle Path.
 
