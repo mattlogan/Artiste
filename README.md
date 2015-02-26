@@ -31,6 +31,8 @@ The `Artiste` class contains the entirety of the public API for this library. It
 
 ## The API
 
+# Regular Convex Polygons
+
 **public static Path createRegularConvexPolygon(int left, int top, int right, int bottom, int numSides)**
 
 Creates a regular convex polygon Path. 
@@ -67,7 +69,7 @@ Creates a regular star polygon Path.
    * `bottom` — Bottom bound
    * `numPoints` — Number of points on star
    * `density` — Density of the star polygon (the number of vertices, or points, to skip when drawing a line connecting two vertices.) rotation value of 0, and draws only the outline by default.
- * **Returns:** A Path corresponding to a regular star polygon. Uses a
+ * **Returns:** A Path corresponding to a regular star polygon. Uses a rotation value of 0, and draws only the outline by default.
 
 **public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density, float rotationDegrees)**
 
@@ -84,6 +86,8 @@ Creates a regular star polygon Path.
  * **Returns:** A Path corresponding to a regular star polygon. Draws only the outline by default.
 
 **public static Path createRegularStarPolygon(int left, int top, int right, int bottom, int numPoints, int density, boolean outline)**
+
+# Regular Star Polygons
 
 Creates a regular star polygon Path. 
 
@@ -113,6 +117,8 @@ Creates a regular star polygon Path.
  * **Returns:** A Path corresponding to a regular star polygon.
 
 **public static Path createCircle(int left, int top, int right, int bottom)**
+
+# Circles
 
 Creates a circle Path.
 
