@@ -10,7 +10,11 @@ import static java.lang.Math.sin;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.toRadians;
 
-class MathUtils {
+final class MathUtils {
+
+    private MathUtils() {
+        throw new AssertionError("No instances allowed");
+    }
 
     static float slope(float[] point1, float[] point2) {
         return (point2[1] - point1[1]) / (point2[0] - point1[0]);

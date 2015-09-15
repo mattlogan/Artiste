@@ -8,7 +8,11 @@ import static java.lang.Math.sin;
 import static java.lang.Math.toRadians;
 import static me.mattlogan.artiste.MathUtils.*;
 
-public class Paths {
+public final class Paths {
+
+    private Paths() {
+        throw new AssertionError("No instances allowed");
+    }
 
     /**
      * Creates a regular convex polygon {@link android.graphics.Path}.
