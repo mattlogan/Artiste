@@ -5,59 +5,27 @@ import android.graphics.Path;
 import static java.lang.Math.cos;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import static java.lang.Math.pow;
 import static java.lang.Math.sin;
+import static java.lang.Math.sqrt;
 import static java.lang.Math.toRadians;
-import static me.mattlogan.artiste.LineMath.distance;
-import static me.mattlogan.artiste.LineMath.slope;
-import static me.mattlogan.artiste.LineMath.yIntercept;
 
-/**
- * Created by Matt Logan on 2/22/15.
- */
-class RegularStarPolygonCreator {
+class MathUtils {
 
-    static Path createRegularStarPolygon(int left, int top, int right, int bottom,
-                                         int numPoints, int density, float rotationDegrees,
-                                         boolean outline) {
-
-        if (right - left != bottom - top) {
-            throw new IllegalArgumentException("Provided bounds (" + left + ", " + top + ", " +
-                    right + ", " + bottom + ") must be square.");
-        }
-        if (numPoints < 5) {
-            throw new IllegalArgumentException("Number of points must be at least 5");
-        }
-        if (density < 2) {
-            throw new IllegalArgumentException("Density must be at least 2");
-        }
-
-        float radius = (right - left) / 2f;
-
-        // Add 90 so first point is top
-        float startDegrees = 90 + rotationDegrees;
-
-        float[][] outerPointsArray = makeOuterPointsArray(numPoints, density, startDegrees, radius);
-
-        if (outline) {
-            // Find the first intersection point created by drawing each line in the star
-            float[] firstIntersection = findFirstIntersectionPoint(outerPointsArray);
-
-            // Use the first intersection point to find the radius of the inner circle of the star
-            float innerRadius = distance(radius, radius, firstIntersection[0],
-                    firstIntersection[1]);
-
-            // Make the array of each point in the star outline
-            float[][] outlinePointsArray = makeOutlinePointsArray(numPoints * 2, startDegrees,
-                    radius, innerRadius);
-
-            return createStarPathFromPointsArray(left, top, outlinePointsArray);
-        } else {
-            return createStarPathFromPointsArray(left, top, outerPointsArray);
-        }
+    static float slope(float[] point1, float[] point2) {
+        return (point2[1] - point1[1]) / (point2[0] - point1[0]);
     }
 
-    private static float[][] makeOuterPointsArray(int numPoints, int density, float startDegrees,
-                                                  float r) {
+    static float distance(float x1, float y1, float x2, float y2) {
+        return (float) sqrt(pow(y2 - y1, 2) + pow(x2 - x1, 2));
+    }
+
+    static float yIntercept(float[] point, float slope) {
+        return point[1] - slope * point[0];
+    }
+
+    static float[][] makeOuterPointsArray(int numPoints, int density, float startDegrees,
+                                          float r) {
 
         float degreesBetweenPoints = 360f / numPoints;
         float[][] outerPoints = new float[numPoints][2];
@@ -70,7 +38,7 @@ class RegularStarPolygonCreator {
         return outerPoints;
     }
 
-    private static float[] findFirstIntersectionPoint(float[][] pointsArray) {
+    static float[] findFirstIntersectionPoint(float[][] pointsArray) {
         float[] firstPt1 = pointsArray[0];
         float[] firstPt2 = pointsArray[1];
 
@@ -135,8 +103,8 @@ class RegularStarPolygonCreator {
                 "Are the number of points and density valid?");
     }
 
-    private static float[][] makeOutlinePointsArray(int numPoints, float startDegrees,
-                                                    float outerRadius, float innerRadius) {
+    static float[][] makeOutlinePointsArray(int numPoints, float startDegrees,
+                                            float outerRadius, float innerRadius) {
 
         float degreesBetweenPoints = 360f / numPoints;
         float[][] outlinePoints = new float[numPoints][2];
@@ -153,8 +121,8 @@ class RegularStarPolygonCreator {
         return outlinePoints;
     }
 
-    private static Path createStarPathFromPointsArray(float xOffset, float yOffset,
-                                                      float[][] pointsArray) {
+    static Path createStarPathFromPointsArray(float xOffset, float yOffset,
+                                              float[][] pointsArray) {
 
         Path path = new Path();
         for (int i = 0; i < pointsArray.length; i++) {
