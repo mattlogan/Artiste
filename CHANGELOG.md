@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 4.0.0 *(2015-9-15)*
+--------------------------
+
+* Renamed Artiste class to Paths in accordance with Effective Java, Item 1
+* Removed telescoping methods with different parameters for Path creation
+* Moved majority of implementation into Paths class, with exception of small MathUtils
+* Upgraded Android dependencies
+* Enforced no instances and no subclasses for Paths and MathUtils
+
 Version 3.0.0 *(2015-2-22)*
 --------------------------
 
