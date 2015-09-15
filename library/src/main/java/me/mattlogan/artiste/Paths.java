@@ -8,7 +8,7 @@ import static java.lang.Math.sin;
 import static java.lang.Math.toRadians;
 import static me.mattlogan.artiste.MathUtils.*;
 
-public class Artiste {
+public class Paths {
 
     /**
      * Creates a regular convex polygon {@link android.graphics.Path}.
@@ -21,8 +21,8 @@ public class Artiste {
      * @param rotationDegrees Degrees to rotate polygon
      * @return A {@link android.graphics.Path} corresponding to a regular convex polygon.
      */
-    public static Path createRegularConvexPolygon(int left, int top, int right, int bottom,
-                                                  int numSides, float rotationDegrees) {
+    public static Path regularConvexPolygon(int left, int top, int right, int bottom,
+                                            int numSides, float rotationDegrees) {
 
         if (right - left != bottom - top) {
             throw new IllegalArgumentException("Provided bounds (" + left + ", " + top + ", " +
@@ -77,9 +77,9 @@ public class Artiste {
      *                        will be drawn connecting the star's vertices.
      * @return A {@link android.graphics.Path} corresponding to a regular star polygon.
      */
-    public static Path createRegularStarPolygon(int left, int top, int right, int bottom,
-                                                int numPoints, int density, float rotationDegrees,
-                                                boolean outline) {
+    public static Path regularStarPolygon(int left, int top, int right, int bottom,
+                                          int numPoints, int density, float rotationDegrees,
+                                          boolean outline) {
 
         if (right - left != bottom - top) {
             throw new IllegalArgumentException("Provided bounds (" + left + ", " + top + ", " +
@@ -126,7 +126,7 @@ public class Artiste {
      * @param bottom Bottom bound
      * @return A {@link android.graphics.Path} corresponding to a circle.
      */
-    public static Path createCircle(int left, int top, int right, int bottom) {
+    public static Path circle(int left, int top, int right, int bottom) {
         if (right - left != bottom - top) {
             throw new IllegalArgumentException("Provided bounds (" + left + ", " + top + ", " +
                     right + ", " + bottom + ") must be square.");

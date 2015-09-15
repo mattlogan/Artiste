@@ -7,7 +7,7 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
 
-import me.mattlogan.artiste.Artiste;
+import me.mattlogan.artiste.Paths;
 
 public class AssortedShapeView extends View {
 
@@ -72,12 +72,12 @@ public class AssortedShapeView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        hexagonPath = Artiste.createRegularConvexPolygon(0, 0, h, h, 6, 25);
-        fivePointedStarPath = Artiste.createRegularStarPolygon(h, 0, 2 * h, h, 5, 2, 12);
-        decagramPath = Artiste.createRegularStarPolygon(2 * h, 0, 3 * h, h, 10, 3, 18, false);
-        circlePath = Artiste.createCircle(3 * h, 0, 4 * h, h);
-        octagramPath = Artiste.createRegularStarPolygon(4 * h, 0, 5 * h, h, 8, 3, 22.5f, false);
-        pentagonPath = Artiste.createRegularConvexPolygon(5 * h, 0, 6 * h, h, 5, 50);
+        hexagonPath = Paths.regularConvexPolygon(0, 0, h, h, 6, 25);
+        fivePointedStarPath = Paths.regularStarPolygon(h, 0, 2 * h, h, 5, 2, 12, true);
+        decagramPath = Paths.regularStarPolygon(2 * h, 0, 3 * h, h, 10, 3, 18, false);
+        circlePath = Paths.circle(3 * h, 0, 4 * h, h);
+        octagramPath = Paths.regularStarPolygon(4 * h, 0, 5 * h, h, 8, 3, 22.5f, false);
+        pentagonPath = Paths.regularConvexPolygon(5 * h, 0, 6 * h, h, 5, 50);
     }
 
     @Override
