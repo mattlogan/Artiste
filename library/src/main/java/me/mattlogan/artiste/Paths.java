@@ -32,7 +32,6 @@ public final class Paths {
             throw new IllegalArgumentException("Provided bounds (" + left + ", " + top + ", " +
                     right + ", " + bottom + ") must be square.");
         }
-
         if (numSides < 3) {
             throw new IllegalArgumentException("Number of sides must be at least 3.");
         }
@@ -77,8 +76,8 @@ public final class Paths {
      * @param density         Density of the star polygon (the number of vertices, or points, to
      *                        skip when drawing a line connecting two vertices.)
      * @param rotationDegrees Number of degrees to rotate star polygon
-     * @param outline         True if only the star's outline should be drawn. If false, complete lines
-     *                        will be drawn connecting the star's vertices.
+     * @param outline         True if only the star's outline should be drawn. If false, complete
+     *                        lines will be drawn connecting the star's vertices.
      * @return A {@link android.graphics.Path} corresponding to a regular star polygon.
      */
     public static Path regularStarPolygon(int left, int top, int right, int bottom,
