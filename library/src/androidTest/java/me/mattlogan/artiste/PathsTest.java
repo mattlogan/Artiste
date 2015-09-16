@@ -99,4 +99,109 @@ public class PathsTest {
     public void testRegularConvexPolygonThrowsWithLessThanThreeSides() {
         Paths.regularConvexPolygon(0, 0, 100, 99, 2, 0);
     }
+
+    /*
+    Check the perimeter of an outlined regular convex polygon.
+     */
+    @Test
+    public void testRegularStarPolygonOutlinePerimeter() {
+        Path path = Paths.regularStarPolygon(0, 0, 100, 100, 5, 2, 0, true);
+        PathMeasure pm = new PathMeasure(path, false);
+
+        // Perimeter of outlined five pointed star inscribed in circle with diameter 100
+        float expectedPerimeter = 363.27f;
+
+        assertEquals(expectedPerimeter, pm.getLength(), 0.01f);
+    }
+
+    /*
+    Check the perimeter of a regular convex polygon without outline.
+     */
+    @Test
+    public void testRegularStarPolygonNoOutlinePerimeter() {
+        Path path = Paths.regularStarPolygon(0, 0, 100, 100, 5, 2, 0, false);
+        PathMeasure pm = new PathMeasure(path, false);
+
+        // Perimeter of non-outlined five pointed star inscribed in circle with diameter 100
+        float expectedPerimeter = 475.53f;
+
+        assertEquals(expectedPerimeter, pm.getLength(), 0.01f);
+    }
+
+    /*
+    Make sure that rotation has no effect on the perimeter of a regular star polygon.
+     */
+    @Test
+    public void testRegularStarPolygonOutlinePerimeterIsRotationIndependent() {
+        Path path1 = Paths.regularStarPolygon(0, 0, 100, 100, 5, 2, 0, true);
+        PathMeasure pm1 = new PathMeasure(path1, false);
+
+        Path path2 = Paths.regularStarPolygon(0, 0, 100, 100, 5, 2, 60, true);
+        PathMeasure pm2 = new PathMeasure(path2, false);
+
+        assertEquals(pm1.getLength(), pm2.getLength(), 0);
+    }
+
+    /*
+    Make sure that rotation has no effect on the perimeter of a regular star polygon.
+     */
+    @Test
+    public void testRegularStarPolygonNoOutlinePerimeterIsRotationIndependent() {
+        Path path1 = Paths.regularStarPolygon(0, 0, 100, 100, 5, 2, 0, false);
+        PathMeasure pm1 = new PathMeasure(path1, false);
+
+        Path path2 = Paths.regularStarPolygon(0, 0, 100, 100, 5, 2, 60, false);
+        PathMeasure pm2 = new PathMeasure(path2, false);
+
+        assertEquals(pm1.getLength(), pm2.getLength(), 0);
+    }
+
+    /*
+    Check relative magnitudes of regular star polygon perimeters. For example, an eight pointed
+    star should have a larger perimeter than a five pointed star if both are inscribed in the same
+    circle.
+     */
+    @Test
+    public void testRelativePerimetersOfRegularStarPolygons() {
+        Path path1 = Paths.regularStarPolygon(0, 0, 100, 100, 5, 2, 0, true);
+        PathMeasure pm1 = new PathMeasure(path1, false);
+
+        Path path2 = Paths.regularStarPolygon(0, 0, 100, 100, 8, 3, 0, true);
+        PathMeasure pm2 = new PathMeasure(path2, false);
+
+        assertTrue(pm2.getLength() > pm1.getLength());
+    }
+
+    /*
+    Non-square bounds should throw.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testRegularStarPolygonThrowsWithNonSquareBounds() {
+        Paths.regularStarPolygon(0, 0, 100, 99, 5, 2, 0, true);
+    }
+
+    /*
+    Num points less than 5 should throw.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testRegularStarPolygonThrowsWithLessThanThreePoints() {
+        Paths.regularStarPolygon(0, 0, 100, 100, 4, 2, 0, true);
+    }
+
+    /*
+    Density less than 2 should throw.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testRegularStarPolygonThrowsWithDensityLessThanTwo() {
+        Paths.regularStarPolygon(0, 0, 100, 100, 5, 1, 0, true);
+    }
+
+    /*
+    While a six pointed star can exist, it can't be drawn with one continuous line, so it's
+    outside the scope of this project (for now).
+     */
+    @Test(expected = IllegalStateException.class)
+    public void testRegularStarPolygonThrowsForInvalidShape() {
+        Paths.regularStarPolygon(0, 0, 100, 100, 6, 2, 0, true);
+    }
 }
