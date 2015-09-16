@@ -15,7 +15,13 @@ android {
         targetSdkVersion 23
         versionCode 4
         versionName "4.0.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+}
+
+dependencies {
+    androidTestCompile 'com.android.support.test:runner:0.4'
 }
 
 apply from: 'https://raw.githubusercontent.com/mattlogan/release-android-library/master/android-release-aar.gradle'
