@@ -45,7 +45,7 @@ public class PathsTest {
     Check the perimeter of a regular convex polygon.
      */
     @Test
-    public void testRegularConvexPolygonSquarePerimeter() {
+    public void testRegularConvexPolygonPerimeter() {
         Path path = Paths.regularConvexPolygon(0, 0, 100, 100, 4, 0);
         PathMeasure pm = new PathMeasure(path, false);
 
