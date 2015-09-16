@@ -11,6 +11,13 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * It's hard to be 100% sure, even with these tests, that the static factory methods in Paths
+ * are returning Paths with the correct shape. Some of these tests are a bit more implicit -- for
+ * example, making sure a pentagon has a larger perimeter than a square. Others just check for
+ * known values -- for example, that the perimeter of a square inscribed inside a circle with
+ * diameter 100 is 282.84.
+ */
 @RunWith(AndroidJUnit4.class)
 @SmallTest
 public class PathsTest {
