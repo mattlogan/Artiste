@@ -16,7 +16,8 @@ import static org.junit.Assert.assertTrue;
  * are returning Paths with the correct shape. Some of these tests are a bit more implicit -- for
  * example, making sure a pentagon has a larger perimeter than a square. Others just check for
  * known values -- for example, that the perimeter of a square inscribed inside a circle with
- * diameter 100 is 282.84.
+ * diameter 100 is 282.84. Finally, some tests check for exceptions that should be thrown for
+ * invalid arguments.
  */
 @RunWith(AndroidJUnit4.class)
 @SmallTest
