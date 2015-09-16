@@ -5,7 +5,7 @@ Artiste is a collection of static methods for creating `Path` objects initialize
 
 <img src="https://raw.githubusercontent.com/mattlogan/Artiste/master/github_assets/artiste_shapes.png" width="350"/>
 
-## Add as Dependency
+## Add as a dependency
 
 Artiste is on jCenter.
 
