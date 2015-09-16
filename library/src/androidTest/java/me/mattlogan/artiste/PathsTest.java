@@ -91,4 +91,12 @@ public class PathsTest {
     public void testRegularConvexPolygonThrowsWithNonSquareBounds() {
         Paths.regularConvexPolygon(0, 0, 100, 99, 4, 0);
     }
+
+    /*
+    Num sides less than 3 should throw.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testRegularConvexPolygonThrowsWithLessThanThreeSides() {
+        Paths.regularConvexPolygon(0, 0, 100, 99, 2, 0);
+    }
 }
