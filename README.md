@@ -70,6 +70,14 @@ Creates a circle Path.
    * `bottom` — Bottom bound
  * **Returns:** A Path corresponding to a circle.
 
+## Tests
+
+This library contains instrumentation tests in the directory `/library/src/androidTest/`.
+
+It's hard to be 100% sure, even with these tests, that the static factory methods in `Paths` are returning `Path` objects initialized with the correct shape. Some of these tests are a bit more implicit -- for example, making sure a pentagon has a larger perimeter than a square. Others just check for known values -- for example, that the perimeter of a square inscribed inside a circle with diameter 100 is 282.84. Finally, some tests check for exceptions that should be thrown for invalid arguments.
+
+In addition to the `library` module, there's also an `example` module with a small demo app. This is a quick way to verify that the library works as described for at least a few of the more common shapes you might encounter. The picture at the top of this readme is a cropped screenshot from this example app.
+
 ## License
 
 ```
